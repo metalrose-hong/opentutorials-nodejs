@@ -84,10 +84,7 @@ var app = http.createServer(function(request,response){
         });
         request.on('end', function() {
             var post = qs.parse(body);
-            var title = post.title;
-            var description = post.description;
-            console.log(title);
-            console.log(description);
+            console.log(post);
         });
         response.writeHead(200);
         response.end('success');

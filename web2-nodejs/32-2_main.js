@@ -78,17 +78,6 @@ var app = http.createServer(function(request,response){
             response.end(template);
         });
     } else if(pathname === '/create_process') {
-        var body = "";
-        request.on('data', function(data) {
-            body = body + data;
-        });
-        request.on('end', function() {
-            var post = qs.parse(body);
-            var title = post.title;
-            var description = post.description;
-            console.log(title);
-            console.log(description);
-        });
         response.writeHead(200);
         response.end('success');
     } else {
