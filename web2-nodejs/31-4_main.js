@@ -64,9 +64,9 @@ var app = http.createServer(function(request,response){
             var list = templateList(filelist);
             var template = templateHTML(title, list, `
                 <form action="http://localhost:3000/create_process" method="post">
-                    <p><input type="text" name="title" placeholder="title"></p>
+                    <p><input type="text" name="title"></p>
                     <p>
-                        <textarea name="description" placeholder="description"></textarea>
+                        <textarea name="description"></textarea>
                     </p>
                     <p>
                         <input type="submit">
