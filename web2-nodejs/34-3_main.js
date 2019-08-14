@@ -57,7 +57,7 @@ var app = http.createServer(function(request,response){
                     var list = templateList(filelist);
                     var template = templateHTML(title, list,
                         `<h2>${title}</h2><p>${description}</p>`,
-                        `<a href="/create">create</a> <a href="/update?id=${title}">update</a>`
+                        `<a href="/create">create</a> <a href="/update">update</a>`
                     );
                     response.writeHead(200);
                     response.end(template);
