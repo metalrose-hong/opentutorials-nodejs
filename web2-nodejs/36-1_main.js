@@ -97,7 +97,7 @@ var app = http.createServer(function(request,response){
                 response.end();
             });
         });
-    } else if(pathname == 'update') {
+    } else if(pathname === '/update') {
         fs.readdir('./data', function(error, filelist) {
             fs.readFile(`data/${queryData.id}`, 'utf8', function(err, description){
                 var title = queryData.id;
@@ -121,7 +121,7 @@ var app = http.createServer(function(request,response){
                 response.end(template);
             });
         });
-    } else if(pathname == '/update_process') {
+    } else if(pathname === '/update_process') {
         // 여기에 수정 내용을 저장하는 코드 작성
     } else {
         response.writeHead(404);
