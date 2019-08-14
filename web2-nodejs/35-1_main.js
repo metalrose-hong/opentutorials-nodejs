@@ -97,7 +97,7 @@ var app = http.createServer(function(request,response){
                 response.end();
             });
         });
-    } else if(pathname == 'update') {
+    } else if(pathname === '/update') {
         // 여기에 수정 화면 처리 코드 작성
     } else {
         response.writeHead(404);

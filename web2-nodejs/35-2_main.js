@@ -97,7 +97,7 @@ var app = http.createServer(function(request,response){
                 response.end();
             });
         });
-    } else if(pathname == 'update') {
+    } else if(pathname === '/update') {
         fs.readdir('./data', function(error, filelist) {
             fs.readFile(`data/${queryData.id}`, 'utf8', function(err, description) {
                 var title = queryData.id;
