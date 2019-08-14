@@ -102,7 +102,7 @@ var app = http.createServer(function(request,response){
                 response.end();
             });
         });
-    } else if(pathname == 'update') {
+    } else if(pathname === '/update') {
         fs.readdir('./data', function(error, filelist) {
             fs.readFile(`data/${queryData.id}`, 'utf8', function(err, description){
                 var title = queryData.id;
@@ -126,7 +126,7 @@ var app = http.createServer(function(request,response){
                 response.end(template);
             });
         });
-    } else if(pathname == '/update_process') {
+    } else if(pathname === '/update_process') {
         var body = "";
         request.on('data', function(data) {
             body = body + data;
@@ -143,7 +143,7 @@ var app = http.createServer(function(request,response){
                 });
             });
         });
-    } else if(pathname == '/delete_process') {
+    } else if(pathname === '/delete_process') {
         var body = "";
         request.on('data', function(data) {
             body = body + data;
@@ -152,7 +152,7 @@ var app = http.createServer(function(request,response){
             var post = qs.parse(body);
             var id = post.id;
             fs.unlink(`data/${id}`, function(error) {
-                response.writeHead(200);
+                response.writeHead(302, {Location: `/`});
                 response.end();
             });
         });
