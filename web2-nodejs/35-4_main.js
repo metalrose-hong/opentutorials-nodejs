@@ -105,7 +105,6 @@ var app = http.createServer(function(request,response){
                 var template = templateHTML(title, list,
                     `
                     <form action="/update_process" method="post">
-                        <input type="hidden" name="id" value="${title}">
                         <p><input type="text" name="title" placeholder="title" value="${title}"></p>
                         <p>
                             <textarea name="description" placeholder="description">${description}</textarea>

@@ -70,7 +70,7 @@ var app = http.createServer(function(request,response){
             var description = 'Hello, Node.js';
             var list = templateList(filelist);
             var template = templateHTML(title, list, `
-                <form action="/create_process" method="post">
+                <form action="http://localhost:3000/create_process" method="post">
                     <p><input type="text" name="title" placeholder="title"></p>
                     <p>
                         <textarea name="description" placeholder="description"></textarea>
@@ -105,7 +105,6 @@ var app = http.createServer(function(request,response){
                 var template = templateHTML(title, list,
                     `
                     <form action="/update_process" method="post">
-                        <input type="hidden" name="id" value="${title}">
                         <p><input type="text" name="title" placeholder="title" value="${title}"></p>
                         <p>
                             <textarea name="description" placeholder="description">${description}</textarea>
