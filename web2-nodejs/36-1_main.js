@@ -122,22 +122,7 @@ var app = http.createServer(function(request,response){
             });
         });
     } else if(pathname == '/update_process') {
-        var body = "";
-        request.on('data', function(data) {
-            body = body + data;
-        });
-        request.on('end', function() {
-            var post = qs.parse(body);
-            var id = post.id;
-            var title = post.title;
-            var description = post.description;
-            fs.rename(`data/${id}`, `data/${title}`, function(error) {
-                fs.writeFile(`data/${title}`, description, 'utf8', function(err){
-                    response.writeHead(200);
-                    response.end('success');
-                });
-            });
-        });
+        // 여기에 수정 내용을 저장하는 코드 작성
     } else {
         response.writeHead(404);
         response.end('Not found');

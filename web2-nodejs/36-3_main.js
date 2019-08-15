@@ -132,11 +132,14 @@ var app = http.createServer(function(request,response){
             var title = post.title;
             var description = post.description;
             fs.rename(`data/${id}`, `data/${title}`, function(error) {
-                fs.writeFile(`data/${title}`, description, 'utf8', function(err){
-                    response.writeHead(200);
-                    response.end('success');
-                });
             });
+            console.log(post);
+            /*
+            fs.writeFile(`data/${title}`, description, 'utf8', function(err){
+                response.writeHead(200);
+                response.end('success');
+            });
+            */
         });
     } else {
         response.writeHead(404);
