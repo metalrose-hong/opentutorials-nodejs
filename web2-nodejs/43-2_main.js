@@ -43,20 +43,20 @@ var app = http.createServer(function(request,response){
             fs.readdir('./data', function(error, filelist) {
                 var title = 'Welcome';
                 var description = 'Hello, Node.js';
-                var list = template.list(filelist);
-                var html = template.HTML(title, list,
+                var list = templateList(filelist);
+                var template = templateHTML(title, list,
                     `<h2>${title}</h2><p>${description}</p>`,
                     `<a href="/create">create</a>`
                 );
                 response.writeHead(200);
-                response.end(html);
+                response.end(template);
             });
         } else {
             fs.readdir('./data', function(error, filelist) {
                 fs.readFile(`data/${queryData.id}`, 'utf8', function(err, description){
                     var title = queryData.id;
-                    var list = template.list(filelist);
-                    var html = template.HTML(title, list,
+                    var list = templateList(filelist);
+                    var template = templateHTML(title, list,
                         `<h2>${title}</h2><p>${description}</p>`,
                         `<a href="/create">create</a>
                         <a href="/update?id=${title}">update</a>
@@ -66,15 +66,15 @@ var app = http.createServer(function(request,response){
                         </form>`
                     );
                     response.writeHead(200);
-                    response.end(html);
+                    response.end(template);
                 });
             });
         }
     } else if(pathname === '/create') {
         fs.readdir('./data', function(error, filelist) {
             var title = 'WEB - create';
-            var list = template.list(filelist);
-            var html = template.HTML(title, list, `
+            var list = templateList(filelist);
+            var template = templateHTML(title, list, `
                 <form action="/create_process" method="post">
                     <p><input type="text" name="title" placeholder="title"></p>
                     <p>
@@ -86,7 +86,7 @@ var app = http.createServer(function(request,response){
                 </form>
             `, '');
             response.writeHead(200);
-            response.end(html);
+            response.end(template);
         });
     } else if(pathname === '/create_process') {
         var body = '';
@@ -106,8 +106,8 @@ var app = http.createServer(function(request,response){
         fs.readdir('./data', function(error, filelist) {
             fs.readFile(`data/${queryData.id}`, 'utf8', function(err, description){
                 var title = queryData.id;
-                var list = template.list(filelist);
-                var html = template.HTML(title, list,
+                var list = templateList(filelist);
+                var template = templateHTML(title, list,
                     `
                     <form action="/update_process" method="post">
                         <input type="hidden" name="id" value="${title}">
@@ -123,7 +123,7 @@ var app = http.createServer(function(request,response){
                     `<a href="/create">create</a> <a href="/update?id=${title}">update</a>`
                 );
                 response.writeHead(200);
-                response.end(html);
+                response.end(template);
             });
         });
     } else if(pathname === '/update_process') {
