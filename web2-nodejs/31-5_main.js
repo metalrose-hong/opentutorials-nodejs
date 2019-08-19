@@ -60,7 +60,6 @@ var app = http.createServer(function(request,response){
     } else if(pathname === '/create') {
         fs.readdir('./data', function(error, filelist) {
             var title = 'WEB - create';
-            var description = 'Hello, Node.js';
             var list = templateList(filelist);
             var template = templateHTML(title, list, `
                 <form action="http://localhost:3000/create_process" method="post">

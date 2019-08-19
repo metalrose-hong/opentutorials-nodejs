@@ -40,7 +40,6 @@ var app = http.createServer(function(request,response){
         if(queryData.id === undefined) {
             fs.readdir('./data', function(error, filelist) {
                 var title = 'Welcome';
-                var description = 'Hello, Node.js';
                 var list = templateList(filelist);
                 var template = templateHTML(title, list, `<h2>${title}</h2><p>${description}</p>`);
                 response.writeHead(200);
