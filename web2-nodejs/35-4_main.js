@@ -67,7 +67,6 @@ var app = http.createServer(function(request,response){
     } else if(pathname === '/create') {
         fs.readdir('./data', function(error, filelist) {
             var title = 'WEB - create';
-            var description = 'Hello, Node.js';
             var list = templateList(filelist);
             var template = templateHTML(title, list, `
                 <form action="/create_process" method="post">
@@ -84,7 +83,7 @@ var app = http.createServer(function(request,response){
             response.end(template);
         });
     } else if(pathname === '/create_process') {
-        var body = "";
+        var body = '';
         request.on('data', function(data) {
             body = body + data;
         });
@@ -97,7 +96,7 @@ var app = http.createServer(function(request,response){
                 response.end();
             });
         });
-    } else if(pathname == 'update') {
+    } else if(pathname === '/update') {
         fs.readdir('./data', function(error, filelist) {
             fs.readFile(`data/${queryData.id}`, 'utf8', function(err, description){
                 var title = queryData.id;
