@@ -20,7 +20,7 @@ function templateHTML(title, list, body) {
 }
 
 
-var app = http.createServer(function(request,response){
+var app = http.createServer(function(request,response) {
     var _url = request.url;
     var queryData = url.parse(_url, true).query;
     var pathname = url.parse(_url, true).pathname;
@@ -64,7 +64,7 @@ var app = http.createServer(function(request,response){
                     i = i + 1;
                 }
                 list = list+'</ul>';
-                fs.readFile(`data/${queryData.id}`, 'utf8', function(err, description){
+                fs.readFile(`data/${queryData.id}`, 'utf8', function(err, description) {
                     var title = queryData.id;
                     var template = `
                     <!doctype html>

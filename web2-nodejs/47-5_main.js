@@ -6,7 +6,7 @@ var template = require('./lib/template.js');
 var path = require('path');
 var sanitizeHtml = require('sanitize-html');
 
-var app = http.createServer(function(request,response){
+var app = http.createServer(function(request,response) {
     var _url = request.url;
     var queryData = url.parse(_url, true).query;
     var pathname = url.parse(_url, true).pathname;
@@ -27,7 +27,7 @@ var app = http.createServer(function(request,response){
         } else {
             fs.readdir('./data', function(error, filelist) {
                 var filteredId = path.parse(queryData.id).base;
-                fs.readFile(`data/${filteredId}`, 'utf8', function(err, description){
+                fs.readFile(`data/${filteredId}`, 'utf8', function(err, description) {
                     var title = queryData.id;
                     var sanitizedTitle = sanitizeHtml(title);
                     var sanitizedDescription = sanitizeHtml(description);
@@ -81,7 +81,7 @@ var app = http.createServer(function(request,response){
     } else if(pathname === '/update') {
         fs.readdir('./data', function(error, filelist) {
             var filteredId = path.parse(queryData.id).base;
-            fs.readFile(`data/${filteredId}`, 'utf8', function(err, description){
+            fs.readFile(`data/${filteredId}`, 'utf8', function(err, description) {
                 var title = queryData.id;
                 var list = template.list(filelist);
                 var html = template.HTML(title, list,
@@ -114,7 +114,7 @@ var app = http.createServer(function(request,response){
             var title = post.title;
             var description = post.description;
             fs.rename(`data/${id}`, `data/${title}`, function(error) {
-                fs.writeFile(`data/${title}`, description, 'utf8', function(err){
+                fs.writeFile(`data/${title}`, description, 'utf8', function(err) {
                     response.writeHead(302, {Location: `/?id=${title}`});
                     response.end();
                 });

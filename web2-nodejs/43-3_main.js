@@ -33,7 +33,7 @@ var template = {
     }
 }
 
-var app = http.createServer(function(request,response){
+var app = http.createServer(function(request,response) {
     var _url = request.url;
     var queryData = url.parse(_url, true).query;
     var pathname = url.parse(_url, true).pathname;
@@ -53,7 +53,7 @@ var app = http.createServer(function(request,response){
             });
         } else {
             fs.readdir('./data', function(error, filelist) {
-                fs.readFile(`data/${queryData.id}`, 'utf8', function(err, description){
+                fs.readFile(`data/${queryData.id}`, 'utf8', function(err, description) {
                     var title = queryData.id;
                     var list = templateList(filelist);
                     var template = templateHTML(title, list,
@@ -104,7 +104,7 @@ var app = http.createServer(function(request,response){
         });
     } else if(pathname === '/update') {
         fs.readdir('./data', function(error, filelist) {
-            fs.readFile(`data/${queryData.id}`, 'utf8', function(err, description){
+            fs.readFile(`data/${queryData.id}`, 'utf8', function(err, description) {
                 var title = queryData.id;
                 var list = templateList(filelist);
                 var template = templateHTML(title, list,
@@ -137,7 +137,7 @@ var app = http.createServer(function(request,response){
             var title = post.title;
             var description = post.description;
             fs.rename(`data/${id}`, `data/${title}`, function(error) {
-                fs.writeFile(`data/${title}`, description, 'utf8', function(err){
+                fs.writeFile(`data/${title}`, description, 'utf8', function(err) {
                     response.writeHead(302, {Location: `/?id=${title}`});
                     response.end();
                 });
