@@ -37,7 +37,7 @@ var app = http.createServer(function(request,response) {
                 if(error) {
                     throw error;
                 }
-                db.query(`SELECT * FROM topic WHERE id=?`, [queryData.id], function(error2, topic) {
+                db.query(`SELECT * FROM topic WHERE id=${queryData.id}`, function(error2, topic) {
                     if(error2) {
                         throw error2;
                     }
@@ -46,12 +46,7 @@ var app = http.createServer(function(request,response) {
                     var list = template.list(topics);
                     var html = template.HTML(title, list,
                         `<h2>${title}</h2>${description}`,
-                        ` <a href="/create">create</a>
-                            <a href="/update?id=${queryData.id}">update</a>
-                            <form action="delete_process" method="post">
-                                <input type="hidden" name="id" value="${queryData.id}">
-                                <input type="submit" value="delete">
-                            </form>`
+                        ` <a href="/create">create</a>`
                     );
                     response.writeHead(200);
                     response.end(html);
