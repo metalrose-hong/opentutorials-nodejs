@@ -4,10 +4,10 @@
 
 
 CREATE TABLE `author` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(20) NOT NULL,
-  `profile` varchar(200) DEFAULT NULL,
-  PRIMARY KEY (`id`)
+    `id` int(11) NOT NULL AUTO_INCREMENT,
+    `name` varchar(20) NOT NULL,
+    `profile` varchar(200) DEFAULT NULL,
+    PRIMARY KEY (`id`)
 );
 
 --
@@ -23,12 +23,12 @@ INSERT INTO `author` VALUES (3,'taeho','data scientist, developer');
 --
 
 CREATE TABLE `topic` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(30) NOT NULL,
-  `description` text,
-  `created` datetime NOT NULL,
-  `author_id` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
+    `id` int(11) NOT NULL AUTO_INCREMENT,
+    `title` varchar(30) NOT NULL,
+    `description` text,
+    `created` datetime NOT NULL,
+    `author_id` int(11) DEFAULT NULL,
+    PRIMARY KEY (`id`)
 );
 
 --
