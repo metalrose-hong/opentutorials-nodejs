@@ -21,10 +21,10 @@ var app = http.createServer(function(request,response) {
     var pathname = url.parse(_url, true).pathname;
     if(pathname === '/') {
         if(queryData.id === undefined) {
-            db.query(`SELECT * FROM topic`, function(error,topics) {
+            fs.readdir('./data', function(error, filelist) {
                 var title = 'Welcome';
                 var description = 'Hello, Node.js';
-                var list = template.list(topics);
+                var list = template.list(filelist);
                 var html = template.HTML(title, list,
                     `<h2>${title}</h2>${description}`,
                     `<a href="/create">create</a>`
