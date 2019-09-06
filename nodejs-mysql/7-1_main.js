@@ -136,11 +136,18 @@ var app = http.createServer(function(request, response) {
         });
         request.on('end', function() {
             var post = qs.parse(body);
-            db.query('UPDATE topic SET title=?, description=?, author_id=1 WHERE id=?',
-                [post.title, post.description, post.id], function(error, result) {
-                response.writeHead(302, {Location: `/?id=${post.id}`});
-                response.end();
-            });
+            db.query(`
+                INSERT INTO topic (title, description, created, author_id)
+                    VALUES(?, ?, NOW(), ?)`,
+                [post.title, post.description, 1],
+                function(error, result) {
+                    if(error) {
+                        throw error;
+                    }
+                    response.writeHead(302, {Location: `/?id=${result.insertId}`});
+                    response.end();
+                }
+            );
         });
     } else if(pathname === '/delete_process') {
         var body = '';
