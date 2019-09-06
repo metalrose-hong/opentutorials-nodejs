@@ -99,8 +99,7 @@ var app = http.createServer(function(request, response) {
             db.query(`
                 INSERT INTO topic (title, description, created, author_id)
                     VALUES(?, ?, NOW(), ?)`,
-                [post.title, post.description, post.author],
-                function(error, result) {
+                [post.title, post.description, post.author], function(error, result) {
                     if(error) {
                         throw error;
                     }
