@@ -83,7 +83,7 @@ var app = http.createServer(function(request, response) {
                         </p>
                     </form>
                     `,
-                    `<a href="/create">create</a>`
+                    `<a href="/create">create</a> <a href="/update?id=${topic[0].id}">update</a>`
                 );
                 response.writeHead(200);
                 response.end(html);
