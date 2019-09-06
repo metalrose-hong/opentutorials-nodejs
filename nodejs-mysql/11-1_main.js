@@ -129,7 +129,7 @@ var app = http.createServer(function(request, response) {
                                 <textarea name="description" placeholder="description">${topic[0].description}</textarea>
                             </p>
                             <p>
-                                ${template.authorSelect(authors, topic[0].author_id)}
+                                ${template.authorSelect(authors)}
                             </p>
                             <p>
                                 <input type="submit">
@@ -150,8 +150,8 @@ var app = http.createServer(function(request, response) {
         });
         request.on('end', function() {
             var post = qs.parse(body);
-            db.query('UPDATE topic SET title=?, description=?, author_id=? WHERE id=?',
-                [post.title, post.description, post.author, post.id], function(error, result) {
+            db.query('UPDATE topic SET title=?, description=?, author_id=1 WHERE id=?',
+                [post.title, post.description, post.id], function(error, result) {
                 response.writeHead(302, {Location: `/?id=${post.id}`});
                 response.end();
             });
