@@ -47,10 +47,7 @@ var app = http.createServer(function(request, response) {
                     var description = topic[0].description;
                     var list = template.list(topics);
                     var html = template.HTML(title, list,
-                        `<h2>${title}</h2>
-                        ${description}
-                        <p>by ${topic[0].name}</p>
-                        `,
+                        `<h2>${title}</h2>${description}`,
                         ` <a href="/create">create</a>
                             <a href="/update?id=${queryData.id}">update</a>
                             <form action="delete_process" method="post">
