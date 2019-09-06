@@ -15,13 +15,13 @@ var db = mysql.createConnection({
 });
 db.connect();
 
-var app = http.createServer(function(request,response) {
+var app = http.createServer(function(request, response) {
     var _url = request.url;
     var queryData = url.parse(_url, true).query;
     var pathname = url.parse(_url, true).pathname;
     if(pathname === '/') {
         if(queryData.id === undefined) {
-            db.query(`SELECT * FROM topic`, function(error,topics) {
+            db.query(`SELECT * FROM topic`, function(error, topics) {
                 db.query(`SELECT * FROM topic WHERE id=${queryData.id}`, function(error2, topic) {
                     var title = 'Welcome';
                     var description = 'Hello, Node.js';
@@ -35,7 +35,7 @@ var app = http.createServer(function(request,response) {
                 }
             });
         } else {
-            db.query(`SELECT * FROM topic`, function(error,topics) {
+            db.query(`SELECT * FROM topic`, function(error, topics) {
                 db.query(`SELECT * FROM topic WHERE id=${queryData.id}`, function(error2, topic) {
                     var title = 'Welcome';
                     var description = 'Hello, Node.js';
