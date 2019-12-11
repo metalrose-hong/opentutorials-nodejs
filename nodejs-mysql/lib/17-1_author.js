@@ -1,6 +1,5 @@
 var db = require('./db');
 var template = require('./template.js');
-var qs = require('querystring');
 
 exports.home = function(request, response) {
     db.query(`SELECT * FROM topic`, function(error, topics) {
@@ -35,27 +34,5 @@ exports.home = function(request, response) {
             response.writeHead(200);
             response.end(html);
         });
-    });
-}
-
-exports.create_process = function(request, response) {
-    var body = '';
-    request.on('data', function(data) {
-        body = body + data;
-    });
-    request.on('end', function() {
-        var post = qs.parse(body);
-        db.query(`
-            INSERT INTO author (name, profile)
-                VALUES(?, ?)`,
-            [post.name, post.profile],
-            function(error, result) {
-                if(error) {
-                    throw error;
-                }
-                response.writeHead(302, {Location: `/author`});
-                response.end();
-            }
-        );
     });
 }
