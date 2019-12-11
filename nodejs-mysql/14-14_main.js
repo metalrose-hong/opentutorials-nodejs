@@ -22,9 +22,33 @@ var app = http.createServer(function(request, response) {
     } else if(pathname === '/update') {
         topic.update(request, response);
     } else if(pathname === '/update_process') {
-        topic.update_process(request, response);
+        var body = '';
+        request.on('data', function(data) {
+            body = body + data;
+        });
+        request.on('end', function() {
+            var post = qs.parse(body);
+            db.query('UPDATE topic SET title=?, description=?, author_id=? WHERE id=?',
+                [post.title, post.description, post.author, post.id], function(error, result) {
+                response.writeHead(302, {Location: `/?id=${post.id}`});
+                response.end();
+            });
+        });
     } else if(pathname === '/delete_process') {
-        topic.delete_process(request, response);
+        var body = '';
+        request.on('data', function(data) {
+            body = body + data;
+        });
+        request.on('end', function() {
+            var post = qs.parse(body);
+            db.query('DELETE FROM topic WHERE id = ?', [post.id], function(error, result) {
+                if(error) {
+                    throw error;
+                }
+                response.writeHead(302, {Location: `/`});
+                response.end();
+            });
+        });
     } else {
         response.writeHead(404);
         response.end('Not found');
