@@ -115,15 +115,14 @@ exports.update = function(request, response) {
             }
             db.query('SELECT * FROM author', function(error2, authors) {
                 var list = template.list(topics);
-                var html = template.HTML(sanitizeHtml(topic[0].title), list,
+                var html = template.HTML(topic[0].title, list,
                     `
                     <form action="/update_process" method="post">
                         <input type="hidden" name="id" value="${topic[0].id}">
                         <p><input type="text" name="title" placeholder="title"
-                                   value="${sanitizeHtml(topic[0].title)}"></p>
+                                   value="${topic[0].title}"></p>
                         <p>
-                            <textarea name="description" placeholder="description">
-                            ${sanitizeHtml(topic[0].description)}</textarea>
+                            <textarea name="description" placeholder="description">${topic[0].description}</textarea>
                         </p>
                         <p>
                             ${template.authorSelect(authors, topic[0].author_id)}
