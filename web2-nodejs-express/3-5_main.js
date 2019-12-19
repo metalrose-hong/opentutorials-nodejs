@@ -7,10 +7,7 @@ app.get('/', function(req, res) {
 app.get('/page', function(req, res) {
     return res.send('/page')
 });
-app.listen(3000, function() {
-    console.log('Example app listening on port 3000!')
-});
-
+app.listen(3000, () => console.log('Example app listening on port 3000!'))
 /*
 var http = require('http');
 var fs = require('fs');
