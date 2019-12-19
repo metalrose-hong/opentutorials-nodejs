@@ -132,24 +132,15 @@ exports.delete_process = function(request, response) {
     });
     request.on('end', function() {
         var post = qs.parse(body);
-        db.query(
-            `DELETE FROM topic WHERE author_id=?`,
+        db.query(`
+            DELETE FROM author WHERE id=?`,
             [post.id],
-            function(error1, result1) {
-                if(error1) {
-                    throw error1;
+            function(error, result) {
+                if(error) {
+                    throw error;
                 }
-                db.query(`
-                    DELETE FROM author WHERE id=?`,
-                    [post.id],
-                    function(error, result) {
-                        if(error) {
-                            throw error;
-                        }
-                        response.writeHead(302, {Location: `/author`});
-                        response.end();
-                    }
-                );
+                response.writeHead(302, {Location: `/author`});
+                response.end();
             }
         );
     });
