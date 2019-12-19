@@ -100,24 +100,6 @@ app.get('/update/:pageId', function(request, response) {
         });
     });
 });
-app.post('/update_process', function(request, response) {
-    var body = '';
-    request.on('data', function(data) {
-        body = body + data;
-    });
-    request.on('end', function() {
-        var post = qs.parse(body);
-        var id = post.id;
-        var title = post.title;
-        var description = post.description;
-        fs.rename(`data/${id}`, `data/${title}`, function(error) {
-            fs.writeFile(`data/${title}`, description, 'utf8', function(err) {
-                response.writeHead(302, {Location: `/?id=${title}`});
-                response.end();
-            });
-        });
-    });
-});
 
 app.listen(3000, function() {
     console.log('Example app listening on port 3000!')
