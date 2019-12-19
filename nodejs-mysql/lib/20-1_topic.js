@@ -30,6 +30,7 @@ exports.page = function(request, response) {
             if(error2) {
                 throw error2;
             }
+            console.log(topic);
             var title = topic[0].title;
             var description = topic[0].description;
             var list = template.list(topics);
@@ -45,6 +46,7 @@ exports.page = function(request, response) {
                         <input type="submit" value="delete">
                     </form>`
             );
+            console.log(query.sql);
             response.writeHead(200);
             response.end(html);
         });
