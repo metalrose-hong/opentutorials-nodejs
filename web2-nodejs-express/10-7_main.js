@@ -64,7 +64,6 @@ app.get('/create', function(request, response) {
     response.send(html);
 });
 app.post('/create_process', function(request, response) {
-    console.log(request.list);
     var post = request.body;
     var title = post.title;
     var description = post.description;

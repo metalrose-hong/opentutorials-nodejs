@@ -10,7 +10,7 @@ var compression = require('compression')
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(compression());
-app.get('*', function(request, response, next) {
+app.use(function(request, response, next) {
     fs.readdir('./data', function(error, filelist) {
         request.list = filelist;
         next();
@@ -34,7 +34,7 @@ app.get('/page/:pageId', function(request, response) {
         var sanitizedDescription = sanitizeHtml(description, {
             allowedTags:['h1']
         });
-        var list = template.list(request.list);
+        var list = template.list(request.list));
         var html = template.HTML(sanitizedTitle, list,
             `<h2>${sanitizedTitle}</h2>${sanitizedDescription}`,
             ` <a href="/create">create</a>
@@ -64,7 +64,6 @@ app.get('/create', function(request, response) {
     response.send(html);
 });
 app.post('/create_process', function(request, response) {
-    console.log(request.list);
     var post = request.body;
     var title = post.title;
     var description = post.description;
