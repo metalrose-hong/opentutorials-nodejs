@@ -22,9 +22,7 @@ app.get('/', function(request, response) {
     var description = 'Hello, Node.js';
     var list = template.list(request.list);
     var html = template.HTML(title, list,
-        `<h2>${title}</h2>${description}
-        <img src="/images/hello.jpg" style="width:300px; display:block; margin-top:10px;">
-        `,
+        `<h2>${title}</h2>${description}`,
         `<a href="/create">create</a>`
     );
     response.send(html);
